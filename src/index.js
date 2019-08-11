@@ -2,6 +2,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Application from './components/Application';
+import theme from './theme';
 
 
 const application = <ThemeProvider children={<Application />} theme={theme} />;
