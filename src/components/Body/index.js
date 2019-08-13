@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Body() {
+export default () => {
   const classes = useStyles();
   return (
     <Grid container justify="center">
@@ -62,4 +62,4 @@ export default function Body() {
       </Grid>
     </Grid>
   );
-}
+};

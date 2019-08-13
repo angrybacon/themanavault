@@ -35,12 +35,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Search() {
+export default () => {
   const classes = useStyles();
-  const [ state, setState ] = React.useState({search: ''});
+  const [ query, setQuery ] = React.useState('');
 
   const onChange = event => {
-    setState({search: event.target.value});
+    setQuery(event.target.value);
   };
 
   return (
@@ -50,9 +50,9 @@ export default function Search() {
         classes={{input: classes.inputInput, root: classes.inputRoot}}
         onChange={onChange}
         placeholder="Search cards..."
-        value={state.search}
+        value={query}
         variant="outlined"
       />
     </div>
   );
-}
+};
