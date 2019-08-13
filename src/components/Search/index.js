@@ -3,6 +3,8 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 import React from 'react';
+import { useDebounce } from 'react-use';
+import scryfall from '../../tools/scryfall';
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,10 +45,21 @@ export default () => {
     setQuery(event.target.value);
   };
 
+  const search = query => {
+    if (query) {
+      scryfall.search(query).then(
+        response => console.log('Success:', response),
+      );
+    }
+  };
+
+  useDebounce(() => search(query), 200, [query]);
+
   return (
     <div className={classes.root}>
       <div children={<Icon color="white" path={mdiMagnify} size={1} />} className={classes.icon} />
       <InputBase
+        autoFocus
         classes={{input: classes.inputInput, root: classes.inputRoot}}
         onChange={onChange}
         placeholder="Search cards..."
