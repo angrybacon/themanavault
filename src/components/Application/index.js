@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default () => {
+export default function Application() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -36,4 +36,4 @@ export default () => {
       <Box children={<Body />} className={classes.body} />
     </div>
   );
-};
+}

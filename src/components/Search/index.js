@@ -37,7 +37,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default () => {
+export default function Search() {
+
   const classes = useStyles();
   const [ query, setQuery ] = React.useState('');
 
@@ -68,4 +69,4 @@ export default () => {
       />
     </div>
   );
-};
+}
