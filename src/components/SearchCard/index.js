@@ -6,11 +6,11 @@ import React from 'react';
 const useStyles = makeStyles(theme => ({
   art: {
     alignSelf: 'center',
-    borderRadius: theme.shape.borderRadius,
-    maxHeight: 60,
-    maxWidth: 60,
-    minHeight: 60,
-    minWidth: 60,
+    borderRadius: '50%',
+    maxHeight: theme.spacing(8),
+    maxWidth: theme.spacing(8),
+    minHeight: theme.spacing(8),
+    minWidth: theme.spacing(8),
     objectFit: 'cover',
   },
   heading: {
@@ -20,11 +20,23 @@ const useStyles = makeStyles(theme => ({
   oracle: {
     flexGrow: 1,
     paddingLeft: theme.spacing(2),
+    paddingTop: theme.spacing(1),
+  },
+  oracleText: {
+    color: theme.palette.text.secondary,
+    display: '-webkit-box',
+    height: `${theme.typography.caption.lineHeight * 2}em`,
+    overflowY: 'hidden',
+    position: 'relative',
+    textOverflow: 'ellipsis',
+    '-webkitBoxOrient': 'vertical',
+    '-webkitLineClamp': 2,
   },
   root: {
     cursor: 'pointer',
     display: 'flex',
-    padding: theme.spacing(1, 2),
+    height: theme.spacing(10),
+    padding: theme.spacing(0, 2),
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
@@ -42,7 +54,12 @@ export default function SearchCard({ card }) {
           <Typography children={`${card.name} ${card.mana_cost}`} />
           <Typography children={card.type_line} />
         </div>
-        <Typography children={card.oracle_text} variant="caption" />
+        <Typography
+          children={card.oracle_text}
+          className={classes.oracleText}
+          component="p"
+          variant="caption"
+        />
       </div>
     </div>
   );

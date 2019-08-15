@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     maxHeight: '70vh',
     overflowY: 'auto',
+    padding: theme.spacing(1, 0),
     position: 'absolute',
     right: 0,
   },
