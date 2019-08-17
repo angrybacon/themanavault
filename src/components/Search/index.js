@@ -1,4 +1,5 @@
 import Autosuggest from 'react-autosuggest';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import { fade, makeStyles } from '@material-ui/core/styles';
@@ -78,8 +79,17 @@ export default function Search() {
   const classes = useStyles();
   const [ query, setQuery ] = React.useState('');
   const [ suggestions, setSuggestions ] = React.useState([]);
+  const [ thinking, setThinking ] = React.useState(false);
 
-  const onChange = event => setQuery(event.target.value);
+  const onChange = event => {
+    setThinking(true);
+    setQuery(event.target.value);
+  };
+
+  const onReset = () => {
+    setSuggestions([]);
+    setThinking(false);
+  };
 
   const onSelect = (event, { suggestionValue }) => {
     console.log(suggestionValue);
@@ -87,7 +97,11 @@ export default function Search() {
 
   const search = query => {
     if (query) {
-      scryfall.search(query).then(response => setSuggestions(response));
+      setThinking(true);
+      scryfall.search(query).then(response => {
+        setSuggestions(response);
+        setThinking(false);
+      });
     }
   };
 
@@ -113,13 +127,18 @@ export default function Search() {
 
   return (
     <div className={classes.root}>
-      <div children={<Icon color="white" path={mdiMagnify} size={1} />} className={classes.icon} />
+      <div className={classes.icon}>
+        {thinking
+         ? <CircularProgress color="inherit" size={20} />
+         : <Icon color="white" path={mdiMagnify} size={1} />
+        }
+      </div>
       <Autosuggest
         alwaysRenderSuggestions
         getSuggestionValue={suggestion => suggestion.rootConditionReword || ''}
         inputProps={inputProps}
         onSuggestionSelected={onSelect}
-        onSuggestionsClearRequested={() => setSuggestions([])}
+        onSuggestionsClearRequested={onReset}
         onSuggestionsFetchRequested={({ value='' }) => value}
         renderInputComponent={props => <InputBase {...props} />}
         renderSuggestion={card => <SearchCard card={card} />}
