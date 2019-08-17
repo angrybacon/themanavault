@@ -44,22 +44,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function SearchCard({ card }) {
+export default function SearchCard({ card={} }) {
   const classes = useStyles();
+  card = card.card_faces && card.card_faces.length ? card.card_faces[0] : card
+  const { image_uris: art={}, name, mana_cost: mana, oracle_text: text, type_line: type } = card;
   return (
     <div className={classes.root}>
-      <img alt={card.name} className={classes.art} src={card.image_uris.art_crop} />
+      <img alt={name} className={classes.art} src={art.art_crop} />
       <div className={classes.oracle}>
         <div className={classes.heading}>
-          <Typography children={`${card.name} ${card.mana_cost}`} />
-          <Typography children={card.type_line} />
+          <Typography children={`${name} ${mana}`} />
+          <Typography children={type} />
         </div>
-        <Typography
-          children={card.oracle_text}
-          className={classes.oracleText}
-          component="p"
-          variant="caption"
-        />
+        <Typography children={text} className={classes.oracleText} component="p" variant="caption" />
       </div>
     </div>
   );
