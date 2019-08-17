@@ -91,10 +91,6 @@ export default function Search() {
     setThinking(false);
   };
 
-  const onSelect = (event, { suggestionValue }) => {
-    console.log(suggestionValue);
-  };
-
   const search = query => {
     if (query) {
       setThinking(true);
@@ -121,9 +117,7 @@ export default function Search() {
     suggestionsList: classes.suggestionsList,
   };
 
-  useDebounce(() => search(query), 100, [query]);
-
-  useMount(() => search('Brainstorm'));
+  useDebounce(() => search(query), 500, [query]);
 
   return (
     <div className={classes.root}>
@@ -134,18 +128,15 @@ export default function Search() {
         }
       </div>
       <Autosuggest
-        alwaysRenderSuggestions
         getSuggestionValue={suggestion => suggestion.rootConditionReword || ''}
         inputProps={inputProps}
-        onSuggestionSelected={onSelect}
         onSuggestionsClearRequested={onReset}
         onSuggestionsFetchRequested={({ value='' }) => value}
         renderInputComponent={props => <InputBase {...props} />}
         renderSuggestion={card => <SearchCard card={card} />}
         renderSuggestionsContainer={({ containerProps, children }) => (
-          <Paper {...containerProps} children={children} elevation={12} />
+          children && <Paper {...containerProps} children={children} elevation={12} />
         )}
-        shouldRenderSuggestions={() => true}
         suggestions={suggestions}
         theme={inputTheme}
       />
