@@ -4,6 +4,7 @@ import React from 'react';
 
 
 const useStyles = makeStyles(theme => ({
+
   art: {
     alignSelf: 'center',
     borderRadius: '50%',
@@ -13,15 +14,35 @@ const useStyles = makeStyles(theme => ({
     minWidth: theme.spacing(8),
     objectFit: 'cover',
   },
+
   heading: {
     display: 'flex',
-    justifyContent: 'space-between',
+    '& > :not(:last-child)': {
+      marginRight: theme.spacing(1),
+    },
   },
+
+  headingMana: {
+    flexShrink: 0,
+  },
+
+  headingName: {
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+
+  headingType: {
+    flexShrink: 0,
+    marginLeft: 'auto',
+  },
+
   oracle: {
     flexGrow: 1,
     paddingLeft: theme.spacing(2),
     paddingTop: theme.spacing(1),
   },
+
   oracleText: {
     color: theme.palette.text.secondary,
     display: '-webkit-box',
@@ -32,6 +53,7 @@ const useStyles = makeStyles(theme => ({
     '-webkitBoxOrient': 'vertical',
     '-webkitLineClamp': 2,
   },
+
   root: {
     cursor: 'pointer',
     display: 'flex',
@@ -53,8 +75,9 @@ export default function SearchCard({ card={} }) {
       <img alt={name} className={classes.art} src={art.art_crop} />
       <div className={classes.oracle}>
         <div className={classes.heading}>
-          <Typography children={`${name} ${mana}`} />
-          <Typography children={type} />
+          <Typography children={name} className={classes.headingName} />
+          <Typography children={mana} className={classes.headingMana} />
+          <Typography children={type} className={classes.headingType} />
         </div>
         <Typography children={text} className={classes.oracleText} component="p" variant="caption" />
       </div>

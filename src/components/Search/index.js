@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     marginTop: theme.spacing(1),
     maxHeight: '70vh',
+    overflowX: 'hidden',
     overflowY: 'auto',
     padding: theme.spacing(1, 0),
     position: 'absolute',
@@ -81,9 +82,9 @@ export default function Search() {
   const [ suggestions, setSuggestions ] = React.useState([]);
   const [ thinking, setThinking ] = React.useState(false);
 
-  const onChange = event => {
+  const onChange = (event, { newValue }) => {
     setThinking(true);
-    setQuery(event.target.value);
+    setQuery(newValue);
   };
 
   const onReset = () => {
