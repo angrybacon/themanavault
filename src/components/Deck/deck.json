@@ -1,0 +1,39 @@
+{
+  "main": [
+    {"amount": 1, "name": "Flooded Strand", "price": 2.34},
+    {"amount": 2, "name": "Island", "price": 2.34},
+    {"amount": 1, "name": "Misty Rainforest", "price": 2.34},
+    {"amount": 4, "name": "Polluted Delta", "price": 2.34},
+    {"amount": 1, "name": "Scalding Tarn", "price": 2.34},
+    {"amount": 1, "name": "Swamp", "price": 2.34},
+    {"amount": 1, "name": "Tundra", "price": 2.34},
+    {"amount": 2, "name": "Underground Sea", "price": 2.34},
+    {"amount": 4, "name": "Brainstorm", "price": 2.34},
+    {"amount": 2, "name": "Cabal Therapy", "price": 2.34},
+    {"amount": 3, "name": "Chrome Mox", "price": 2.34},
+    {"amount": 4, "name": "Dark Ritual", "price": 2.34},
+    {"amount": 4, "name": "Echo of Eons", "price": 2.34},
+    {"amount": 3, "name": "Entomb", "price": 2.34},
+    {"amount": 4, "name": "Lion's Eye Diamond", "price": 2.34},
+    {"amount": 4, "name": "Lotus Petal", "price": 2.34},
+    {"amount": 2, "name": "Monastery Mentor", "price": 2.34},
+    {"amount": 4, "name": "Narset, Parter of Veils", "price": 2.34},
+    {"amount": 4, "name": "Ponder", "price": 2.34},
+    {"amount": 2, "name": "Preordain", "price": 2.34},
+    {"amount": 1, "name": "Pull from Eternity", "price": 2.34},
+    {"amount": 2, "name": "Tendrils of Agony", "price": 2.34},
+    {"amount": 4, "name": "Thoughtseize", "price": 2.34}
+  ],
+  "side": [
+    {"amount": 1, "name": "Chain of Vapor", "price": 2.34},
+    {"amount": 1, "name": "Darkblast", "price": 2.34},
+    {"amount": 2, "name": "Defense Grid", "price": 2.34},
+    {"amount": 1, "name": "Echoing Truth", "price": 2.34},
+    {"amount": 1, "name": "Flusterstorm", "price": 2.34},
+    {"amount": 2, "name": "Hurkyl's Recall", "price": 2.34},
+    {"amount": 2, "name": "Massacre", "price": 2.34},
+    {"amount": 1, "name": "Silence", "price": 2.34},
+    {"amount": 2, "name": "Surgical Extraction", "price": 2.34},
+    {"amount": 2, "name": "Teferi, Time Raveler", "price": 2.34}
+  ]
+}
