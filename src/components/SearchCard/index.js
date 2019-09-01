@@ -59,9 +59,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     height: theme.spacing(10),
     padding: theme.spacing(0, 2),
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
   },
 }));
 

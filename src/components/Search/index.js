@@ -6,7 +6,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 import React from 'react';
-import { useDebounce, useMount } from 'react-use';
+import { useDebounce } from 'react-use';
 import SearchCard from '../SearchCard';
 import scryfall from '../../tools/scryfall';
 
@@ -28,9 +28,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexGrow: 1,
     position: 'relative',
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, .25),
-    },
   },
 
   searchContainer: {
@@ -40,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   searchInput: {
     color: 'inherit',
     width: '100%',
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, .25),
+    },
   },
 
   searchInputInput: {
@@ -52,6 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   suggestionHighlighted: {
+    backgroundColor: theme.palette.action.hover,
   },
 
   suggestions: {
@@ -79,11 +80,13 @@ export default function Search() {
 
   const classes = useStyles();
   const [ query, setQuery ] = React.useState('');
+  const [ input, setInput ] = React.useState('');
   const [ suggestions, setSuggestions ] = React.useState([]);
   const [ thinking, setThinking ] = React.useState(false);
 
   const onChange = (event, { newValue }) => {
     setThinking(true);
+    setInput(newValue);
     setQuery(newValue);
   };
 
@@ -107,7 +110,7 @@ export default function Search() {
     classes: {input: classes.searchInputInput, root: classes.searchInput},
     onChange,
     placeholder: 'Search for cards...',
-    value: query,
+    value: input,
   };
 
   const inputTheme = {
@@ -129,10 +132,10 @@ export default function Search() {
         }
       </div>
       <Autosuggest
-        getSuggestionValue={suggestion => suggestion.rootConditionReword || ''}
+        getSuggestionValue={(card={}) => card.name}
         inputProps={inputProps}
         onSuggestionsClearRequested={onReset}
-        onSuggestionsFetchRequested={({ value='' }) => value}
+        onSuggestionsFetchRequested={() => {}}
         renderInputComponent={props => <InputBase {...props} />}
         renderSuggestion={card => <SearchCard card={card} />}
         renderSuggestionsContainer={({ containerProps, children }) => (
