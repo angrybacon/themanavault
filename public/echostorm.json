@@ -24,6 +24,7 @@
     {"amount": 2, "name": "Tendrils of Agony", "price": 2.34},
     {"amount": 4, "name": "Thoughtseize", "price": 2.34}
   ],
+  "name": "Echo Storm",
   "side": [
     {"amount": 1, "name": "Chain of Vapor", "price": 2.34},
     {"amount": 1, "name": "Darkblast", "price": 2.34},
