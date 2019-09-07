@@ -6,6 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React from 'react';
 import { useMount } from 'react-use';
 import DeckBody from '../DeckBody';
+import DeckHeader from '../DeckHeader';
 
 
 const useStyles = makeStyles({
@@ -29,6 +30,7 @@ export default function Deck() {
 
   return deck && (
     <Paper className={classes.root}>
+      <DeckHeader deck={deck} />
       <Table padding={desktop ? 'default' : 'default'} size="small">
         <DeckBody cards={deck.main} />
         <DeckBody cards={deck.side} />
