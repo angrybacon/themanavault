@@ -21,21 +21,47 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function DeckBody({ cards=[] }) {
+
   const classes = useStyles();
+  const [ selection, setSelection ] = React.useState([]);
   const overrides = {
     MuiCheckbox: {root: {'&:hover': {background: 'none'}}},
     MuiTableCell: {root: {whiteSpace: 'nowrap'}},
   };
   const now = moment().format('YYYY.MM.DD HH:mm:ss');
+
+  const isSelected = (name='*') => {
+    return name === '*' ? Object.keys(selection).length === cards.length : !!selection[name];
+  };
+
+  const onSelect = (name='*') => () => {
+    if (name === '*') {
+      setSelection(isSelected() ? {} : cards.reduce((accumulator, { name }) => (
+        {...accumulator, [name]: true}
+      ), {}));
+    }
+    else {
+      const { [name]: value, ...rest } = selection;
+      setSelection({ ...rest, ...(value ? undefined : {[name]: true})});
+    }
+  };
+
+  const isSelectedAll = isSelected();
   return !!cards.length && (
     <ThemeProvider theme={{...theme, overrides}}>
       <TableHead>
         <TableRow>
-          <TableCell children={<Checkbox />} padding="checkbox" />
-          <TableCell align="center">
+          <TableCell padding="checkbox">
+            <Checkbox
+              checked={isSelectedAll}
+              indeterminate={!!Object.keys(selection).length && !isSelectedAll}
+              onChange={onSelect('*')}
+            />
+          </TableCell>
+          <TableCell align="center" padding="checkbox">
             <Icon className={classes.icon} path={mdiPackageVariant} size={.75} />
           </TableCell>
-          <TableCell align="center">
+          <TableCell align="center" padding="checkbox">
             <Icon className={classes.icon} path={mdiPound} size={.75} />
           </TableCell>
           <TableCell children="Name" />
@@ -47,19 +73,22 @@ export default function DeckBody({ cards=[] }) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {cards.map((it, index) => (
-          <TableRow key={index}>
-            <TableCell children={<Checkbox />} padding="checkbox" />
-            <TableCell align="center" children={it.amount} />
-            <TableCell align="center" children={it.amount} />
-            <TableCell children={it.name} component="th" scope="row" />
-            <TableCell children={it.set} />
-            <TableCell children={`${it.price}€`} />
-            <TableCell children={it.type} />
-            <TableCell children={it.mana} />
-            <TableCell children={now} />
-          </TableRow>
-        ))}
+        {cards.map((it, index) => {
+          const highlight = isSelected(it.name);
+          return (
+            <TableRow hover key={index} onClick={onSelect(it.name)} selected={highlight}>
+              <TableCell children={<Checkbox checked={highlight} />} padding="checkbox" />
+              <TableCell align="center" padding="checkbox" children={it.amount} />
+              <TableCell align="center" padding="checkbox" children={it.amount} />
+              <TableCell children={it.name} component="th" scope="row" />
+              <TableCell children={it.set} />
+              <TableCell children={`${it.price}€`} />
+              <TableCell children={it.type} />
+              <TableCell children={it.mana} />
+              <TableCell children={now} />
+            </TableRow>
+          );
+        })}
       </TableBody>
     </ThemeProvider>
   );
