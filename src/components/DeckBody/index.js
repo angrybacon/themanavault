@@ -1,18 +1,19 @@
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { mdiPackageVariant, mdiPound } from '@mdi/js'
-import Icon from '@mdi/react'
-import moment from 'moment';
-import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { mdiPackageVariant, mdiPound } from '@mdi/js';
+import Icon from '@mdi/react';
 import theme from '../../theme';
 import useStyles from './styles';
 
 
-export default function DeckBody({ cards=[] }) {
+export default function DeckBody({ cards }) {
 
   const classes = useStyles();
   const [ selection, setSelection ] = React.useState([]);
@@ -22,11 +23,11 @@ export default function DeckBody({ cards=[] }) {
   };
   const now = moment().format('YYYY.MM.DD HH:mm:ss');
 
-  const isSelected = (name='*') => {
+  const isSelected = (name = '*') => {
     return name === '*' ? Object.keys(selection).length === cards.length : !!selection[name];
   };
 
-  const onSelect = (name='*') => () => {
+  const onSelect = (name = '*') => () => {
     if (name === '*') {
       setSelection(isSelected() ? {} : cards.reduce((accumulator, { name }) => (
         {...accumulator, [name]: true}
@@ -85,3 +86,13 @@ export default function DeckBody({ cards=[] }) {
     </ThemeProvider>
   );
 }
+
+
+DeckBody.defaultProps = {
+  cards: [],
+};
+
+
+DeckBody.propTypes = {
+  cards: PropTypes.array,
+};

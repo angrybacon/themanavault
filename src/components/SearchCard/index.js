@@ -1,12 +1,13 @@
-import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import useStyles from './styles.js';
 
 
-export default function SearchCard({ card={} }) {
+export default function SearchCard({ card }) {
   const classes = useStyles();
-  card = card.card_faces && card.card_faces.length ? card.card_faces[0] : card
-  const { image_uris: art={}, name, mana_cost: mana, oracle_text: text, type_line: type } = card;
+  card = card.card_faces && card.card_faces.length ? card.card_faces[0] : card;
+  const { image_uris: art = {}, name, mana_cost: mana, oracle_text: text, type_line: type } = card;
   return (
     <div className={classes.root}>
       <img alt={name} className={classes.art} src={art.art_crop} />
@@ -21,3 +22,13 @@ export default function SearchCard({ card={} }) {
     </div>
   );
 }
+
+
+SearchCard.defaultProps = {
+  card: {},
+};
+
+
+SearchCard.propTypes = {
+  card: PropTypes.object,
+};

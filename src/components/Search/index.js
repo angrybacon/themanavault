@@ -1,11 +1,11 @@
+import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import { useDebounce } from 'react-use';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
-import React from 'react';
-import { useDebounce } from 'react-use';
 import SearchCard from '../SearchCard';
 import scryfall from '../../tools/scryfall';
 import useStyles from './styles';
@@ -67,13 +67,13 @@ export default function Search() {
         }
       </div>
       <Autosuggest
-        getSuggestionValue={(card={}) => card.name}
+        getSuggestionValue={(card = {}) => card.name}
         inputProps={inputProps}
         onSuggestionsClearRequested={onReset}
         onSuggestionsFetchRequested={() => {}}
         renderInputComponent={props => <InputBase {...props} />}
         renderSuggestion={card => <SearchCard card={card} />}
-        renderSuggestionsContainer={({ containerProps, children }) => (
+        renderSuggestionsContainer={({ children, containerProps }) => (
           children && <Paper {...containerProps} children={children} elevation={12} />
         )}
         suggestions={suggestions}

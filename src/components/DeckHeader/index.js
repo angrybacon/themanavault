@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
+import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
 import useStyles from './styles';
 
 
-export default function DeckHeader({ deck={} }) {
+export default function DeckHeader({ deck }) {
   const classes = useStyles();
   return (
     <Toolbar classes={{root: classes.root}}>
@@ -12,3 +13,15 @@ export default function DeckHeader({ deck={} }) {
     </Toolbar>
   );
 }
+
+
+DeckHeader.defaultProps = {
+  deck: {},
+};
+
+
+DeckHeader.propTypes = {
+  deck: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }),
+};
