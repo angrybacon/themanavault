@@ -3,21 +3,13 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import { mdiPackageVariant, mdiPound } from '@mdi/js'
 import Icon from '@mdi/react'
 import moment from 'moment';
 import React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../theme';
-
-
-const useStyles = makeStyles(theme => ({
-  icon: {
-    display: 'block',
-    fill: theme.palette.text.secondary,
-  },
-}));
+import useStyles from './styles';
 
 
 export default function DeckBody({ cards=[] }) {

@@ -1,19 +1,12 @@
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
-import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React from 'react';
 import { useMount } from 'react-use';
 import DeckBody from '../DeckBody';
 import DeckHeader from '../DeckHeader';
-
-
-const useStyles = makeStyles({
-  root: {
-    overflowX: 'auto',
-  },
-});
+import useStyles from './styles';
 
 
 export default function Deck() {

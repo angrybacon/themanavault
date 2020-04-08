@@ -1,18 +1,7 @@
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import Deck from '../Deck';
-
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    '& > *': {
-      '&:not(:last-child)': {
-        marginBottom: theme.spacing(2),
-      },
-    },
-  },
-}));
+import useStyles from './styles';
 
 
 export default function Body() {

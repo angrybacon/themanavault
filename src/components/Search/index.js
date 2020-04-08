@@ -2,78 +2,13 @@ import Autosuggest from 'react-autosuggest';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
-import { fade, makeStyles } from '@material-ui/core/styles';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 import React from 'react';
 import { useDebounce } from 'react-use';
 import SearchCard from '../SearchCard';
 import scryfall from '../../tools/scryfall';
-
-
-const useStyles = makeStyles(theme => ({
-
-  icon: {
-    alignItems: 'center',
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: theme.spacing(6),
-  },
-
-  root: {
-    backgroundColor: fade(theme.palette.common.white, .15),
-    borderRadius: theme.shape.borderRadius,
-    display: 'flex',
-    flexGrow: 1,
-    position: 'relative',
-  },
-
-  searchContainer: {
-    width: '100%',
-  },
-
-  searchInput: {
-    color: 'inherit',
-    width: '100%',
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, .25),
-    },
-  },
-
-  searchInputInput: {
-    padding: theme.spacing(1),
-    paddingLeft: theme.spacing(6),
-    width: '100%',
-  },
-
-  suggestion: {
-  },
-
-  suggestionHighlighted: {
-    backgroundColor: theme.palette.action.hover,
-  },
-
-  suggestions: {
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    left: 0,
-    marginTop: theme.spacing(1),
-    maxHeight: '70vh',
-    overflowX: 'hidden',
-    overflowY: 'auto',
-    padding: theme.spacing(1, 0),
-    position: 'absolute',
-    right: 0,
-  },
-
-  suggestionsList: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-  },
-}));
+import useStyles from './styles';
 
 
 export default function Search() {
