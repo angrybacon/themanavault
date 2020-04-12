@@ -4,8 +4,8 @@ import { useMount } from 'react-use';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import DeckBody from '../DeckBody';
-import DeckHeader from '../DeckHeader';
+import Body from './Body';
+import Header from './Header';
 import useStyles from './styles';
 
 
@@ -15,7 +15,7 @@ export default function Deck() {
   const classes = useStyles();
   const [ deck, setDeck ] = React.useState(null);
 
-  const fetch = () => axios.get('/echostorm.json').then(({ data }) => {
+  const fetch = () => axios.get('/doomsday.json').then(({ data }) => {
     setDeck(data);
   });
 
@@ -23,10 +23,10 @@ export default function Deck() {
 
   return deck && (
     <Paper className={classes.root}>
-      <DeckHeader deck={deck} />
+      <Header deck={deck} />
       <Table padding={desktop ? 'default' : 'default'} size="small">
-        <DeckBody cards={deck.main} />
-        <DeckBody cards={deck.side} />
+        <Body cards={deck.main} />
+        <Body cards={deck.side} />
       </Table>
     </Paper>
   );

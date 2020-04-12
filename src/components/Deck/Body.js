@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { PackageVariant, Pound } from 'mdi-material-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -7,21 +7,18 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { mdiPackageVariant, mdiPound } from '@mdi/js';
-import Icon from '@mdi/react';
 import theme from '../../theme';
 import useStyles from './styles';
 
 
 export default function DeckBody({ cards }) {
 
-  const classes = useStyles();
   const [ selection, setSelection ] = React.useState([]);
+  const classes = useStyles();
   const overrides = {
     MuiCheckbox: {root: {'&:hover': {background: 'none'}}},
     MuiTableCell: {root: {whiteSpace: 'nowrap'}},
   };
-  const now = moment().format('YYYY.MM.DD HH:mm:ss');
 
   const isSelected = (name = '*') => {
     return name === '*' ? Object.keys(selection).length === cards.length : !!selection[name];
@@ -52,17 +49,12 @@ export default function DeckBody({ cards }) {
             />
           </TableCell>
           <TableCell align="center" padding="checkbox">
-            <Icon className={classes.icon} path={mdiPackageVariant} size={.75} />
+            <PackageVariant className={classes.icon} fontSize="small" />
           </TableCell>
           <TableCell align="center" padding="checkbox">
-            <Icon className={classes.icon} path={mdiPound} size={.75} />
+            <Pound className={classes.icon} fontSize="small" />
           </TableCell>
           <TableCell children="Name" />
-          <TableCell children="Set" />
-          <TableCell children="Price" />
-          <TableCell children="Type" />
-          <TableCell children="Mana" />
-          <TableCell children="Updated On" />
         </TableRow>
       </TableHead>
       <TableBody>
@@ -74,11 +66,6 @@ export default function DeckBody({ cards }) {
               <TableCell align="center" padding="checkbox" children={it.amount} />
               <TableCell align="center" padding="checkbox" children={it.amount} />
               <TableCell children={it.name} component="th" scope="row" />
-              <TableCell children={it.set} />
-              <TableCell children={`${it.price}€`} />
-              <TableCell children={it.type} />
-              <TableCell children={it.mana} />
-              <TableCell children={now} />
             </TableRow>
           );
         })}

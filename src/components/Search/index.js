@@ -1,11 +1,10 @@
+import { Magnify } from 'mdi-material-ui';
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import { useDebounce } from 'react-use';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
-import Icon from '@mdi/react';
-import { mdiMagnify } from '@mdi/js';
 import SearchCard from '../SearchCard';
 import scryfall from '../../tools/scryfall';
 import useStyles from './styles';
@@ -63,7 +62,7 @@ export default function Search() {
       <div className={classes.icon}>
         {thinking
          ? <CircularProgress color="inherit" size={20} />
-         : <Icon color="white" path={mdiMagnify} size={1} />
+         : <Magnify fontSize="small" />
         }
       </div>
       <Autosuggest

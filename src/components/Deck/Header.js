@@ -8,7 +8,7 @@ import useStyles from './styles';
 export default function DeckHeader({ deck }) {
   const classes = useStyles();
   return (
-    <Toolbar classes={{root: classes.root}}>
+    <Toolbar classes={{root: classes.header}}>
       <Typography children={deck.name} variant="h6" />
     </Toolbar>
   );
